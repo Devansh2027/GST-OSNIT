@@ -1,34 +1,60 @@
-# 🔍 GST-OSINT: Perl Intelligence Tool
+# 🔍 GST-OSINT: Intelligence & Verification Tool
 
-A professional-grade OSINT (Open Source Intelligence) and verification tool for Indian GST Identification Numbers (GSTIN). This script allows for both **Instant Offline Validation** and **Deep Online Intelligence** gathering using Perl.
+![Perl Version](https://img.shields.io/badge/Perl-v5.14+-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![OSINT](https://img.shields.io/badge/Category-OSINT-orange.svg)
 
----
-
-## 🌟 Features
-
-### 1. Offline Verification
-- **Format Validation:** Regex-based checks for the 15-digit structure.
-- **State Decoding:** Automatically identifies the registration state from the first two digits (e.g., 07 - Delhi, 27 - Maharashtra).
-- **PAN Extraction:** Isolates the entity's PAN directly from the GSTIN.
-- **Mod-36 Checksum:** Implements the mathematical validation to detect fake or mistyped GST numbers without an internet connection.
-
-### 2. Online OSINT Lookup
-- **Entity Details:** Retrieves Legal Name, Trade Name, and Registration Date.
-- **Status Check:** Real-time status (Active/Cancelled/Suspended).
-- **Jurisdiction:** Identifies both Central and State jurisdiction wards.
-- **HSN/SAC Summary:** Lists the goods and services the business is registered for.
-- **Filing Intelligence:** Displays a table of the latest GSTR filings, financial years, and tax periods.
+**GST-OSINT** is a robust command-line utility built in Perl designed to automate the validation and investigation of Indian Goods and Services Tax Identification Numbers (GSTIN). It bridges the gap between basic format checking and deep-dive business intelligence.
 
 ---
 
-## 🛠️ Prerequisites
+## 📖 Project Description
 
-### Minimum Requirements
-* **Perl Version:** `v5.14.0` or higher (Uses the `/r` and `//` operators).
-* **System:** Works on Linux, macOS, and Windows (via Strawberry Perl).
+In modern financial ecosystems, manual verification of vendor tax identities is a significant bottleneck. **GST-OSINT** solves this by providing a dual-layered investigative approach:
 
-### Dependency Installation
-This tool requires a few CPAN modules for web requests and JSON handling. Install them by running:
+### The Problem it Solves:
+* **Fraud Prevention:** Instantly identifies mathematically "fake" or mistyped GSTINs using local cryptographic validation.
+* **Compliance Automation:** Simplifies vendor onboarding by fetching real-time registration status and filing history.
+* **Intelligence Gathering:** Decodes the internal structure of a GSTIN to reveal the State of origin, the linked PAN, and the business's tax-paying behavior.
 
+### How it Works:
+1.  **Mathematical Layer:** The tool implements the **ISO 7064 Mod 36, 37** algorithm. It calculates the check-digit of the input GSTIN locally to ensure authenticity before ever making a network request.
+2.  **OSINT Layer:** Utilizing public endpoints and scraping techniques, the tool pulls the Legal Name, Trade Name, Business Constitution, and the most recent GSTR-1 and GSTR-3B filing records.
+
+---
+
+## 🌟 Key Features
+
+* **Offline Validation:** Regex-based format checks + Modulo-36 checksum verification.
+* **State Decoding:** Instant mapping for all 38 Indian State/UT codes.
+* **Deep Business Lookup:** Real-time data including Business Status (Active/Inactive), Taxpayer Type, and Jurisdiction Wards.
+* **HSN/SAC Analytics:** Displays the primary goods and services the entity is registered to provide.
+* **Filing History Table:** A clean, scannable table showing the last several tax filing periods.
+
+---
+
+## 🛠️ Prerequisites & Setup
+
+### Requirements
+* **Perl Version:** `v5.14.0` or higher.
+* **Dependencies:** `LWP::UserAgent`, `JSON`, and `LWP::Protocol::https`.
+
+### Installation
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/YOUR_USERNAME/gst-osint-perl.git](https://github.com/YOUR_USERNAME/gst-osint-perl.git)
+    cd gst-osint-perl
+    ```
+
+2.  **Install dependencies via CPAN:**
+    ```bash
+    cpan install LWP::UserAgent JSON LWP::Protocol::https
+    ```
+
+---
+
+## 🚀 Usage Guide
+
+Run the script from your terminal:
 ```bash
-cpan install LWP::UserAgent JSON LWP::Protocol::https
+perl gst_osint.pl
