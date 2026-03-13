@@ -42,7 +42,7 @@ In modern financial ecosystems, manual verification of vendor tax identities is 
 ### Installation
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/Devansh2027/GST-OSNIT](https://github.com/Devansh2027/GST-OSNIT))
+    git clone [https://github.com/Devansh2027/GST-OSNIT](https://github.com/Devansh2027/GST-OSNIT)
     cd gst-osint-perl
     ```
 
